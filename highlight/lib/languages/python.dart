@@ -48,7 +48,7 @@ final python = Mode(
               "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)[lLjJ]?")
     ]),
     '~contains~0': Mode(className: "meta", begin: "^(>>>|\\.\\.\\.) "),
-    '~contains~4':
+    '~contains~2':
         Mode(className: "variable", begin: "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"),
   },
   aliases: ["py", "gyp", "ipython"],
@@ -105,6 +105,6 @@ final python = Mode(
     ),
     Mode(className: "meta", begin: "^[\\t ]*@", end: "\$"),
     Mode(begin: "\\b(print|exec)\\("),
-    Mode(ref: '~contains~4'), // Variable names mode
+    Mode(ref: '~contains~2'), // Variable names mode
   ],
 );
