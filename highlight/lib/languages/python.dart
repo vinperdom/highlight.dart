@@ -48,7 +48,6 @@ final python = Mode(
               "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)[lLjJ]?")
     ]),
     '~contains~0': Mode(className: "meta", begin: "^(>>>|\\.\\.\\.) "),
-    'variable': Mode(className: "variable", begin: "\\b[a-zA-Z_][\\w]*\\b")
   },
   aliases: ["py", "gyp", "ipython"],
   keywords: {
@@ -78,7 +77,6 @@ final python = Mode(
             Mode(ref: '~contains~1'),
             Mode(ref: '~contains~3'),
             HASH_COMMENT_MODE,
-            Mode(ref: 'variable') // Highlight variables inside print function
           ],
         ),
         Mode(className: "function", beginKeywords: "def"),
@@ -98,9 +96,6 @@ final python = Mode(
             Mode(ref: '~contains~1'),
             Mode(ref: '~contains~3'),
             HASH_COMMENT_MODE,
-            Mode(
-                ref:
-                    'variable') // Highlight variables inside function parameters
           ],
         ),
         Mode(begin: "->", endsWithParent: true, keywords: "None"),
@@ -108,6 +103,5 @@ final python = Mode(
     ),
     Mode(className: "meta", begin: "^[\\t ]*@", end: "\$"),
     Mode(begin: "\\b(print|exec)\\("),
-    Mode(ref: 'variable') // Highlight variables outside of function scope
   ],
 );
