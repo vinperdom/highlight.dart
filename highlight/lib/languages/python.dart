@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 import '../src/mode.dart';
 import '../src/common_modes.dart';
 
@@ -35,32 +33,10 @@ final python = Mode(
           end: "\"\"\"",
           contains: [BACKSLASH_ESCAPE, Mode(ref: '~contains~0')],
           relevance: 10),
-      Mode(begin: "(fr|rf|f)'''", end: "'''", contains: [
-        BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~3~variants~2~contains~2'),
-        Mode(ref: '~contains~3~variants~2~contains~3')
-      ]),
-      Mode(begin: "(fr|rf|f)\"\"\"", end: "\"\"\"", contains: [
-        BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~0'),
-        Mode(ref: '~contains~3~variants~2~contains~2'),
-        Mode(ref: '~contains~3~variants~2~contains~3')
-      ]),
       Mode(begin: "(u|r|ur)'", end: "'", relevance: 10),
       Mode(begin: "(u|r|ur)\"", end: "\"", relevance: 10),
       Mode(begin: "(b|br)'", end: "'"),
       Mode(begin: "(b|br)\"", end: "\""),
-      Mode(begin: "(fr|rf|f)'", end: "'", contains: [
-        BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~3~variants~2~contains~2'),
-        Mode(ref: '~contains~3~variants~2~contains~3')
-      ]),
-      Mode(begin: "(fr|rf|f)\"", end: "\"", contains: [
-        BACKSLASH_ESCAPE,
-        Mode(ref: '~contains~3~variants~2~contains~2'),
-        Mode(ref: '~contains~3~variants~2~contains~3')
-      ]),
       APOS_STRING_MODE,
       QUOTE_STRING_MODE
     ]),
