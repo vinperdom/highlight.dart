@@ -4,49 +4,62 @@ import '../src/common_modes.dart';
 final python = Mode(
   refs: {
     '~contains~3~variants~2~contains~3': Mode(
-        className: "subst",
-        begin: "\\{",
-        end: "\\}",
-        keywords: {
-          "keyword":
-              "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda async await nonlocal|10",
-          "built_in": "Ellipsis NotImplemented",
-          "literal": "False None True"
-        },
-        illegal: "#",
-        contains: [
-          Mode(ref: '~contains~3'),
-          Mode(ref: '~contains~1'),
-          Mode(ref: '~contains~0')
-        ]),
+      className: "subst",
+      begin: "\\{",
+      end: "\\}",
+      keywords: {
+        "keyword":
+            "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda async await nonlocal|10",
+        "built_in": "Ellipsis NotImplemented",
+        "literal": "False None True"
+      },
+      illegal: "#",
+      contains: [
+        Mode(ref: '~contains~3'),
+        Mode(ref: '~contains~1'),
+        Mode(ref: '~contains~0')
+      ],
+    ),
     '~contains~3~variants~2~contains~2': Mode(begin: "\\{\\{", relevance: 0),
-    '~contains~3': Mode(className: "string", contains: [
-      BACKSLASH_ESCAPE
-    ], variants: [
-      Mode(
+    '~contains~3': Mode(
+      className: "string",
+      contains: [BACKSLASH_ESCAPE],
+      variants: [
+        Mode(
           begin: "(u|b)?r?'''",
           end: "'''",
           contains: [BACKSLASH_ESCAPE, Mode(ref: '~contains~0')],
-          relevance: 10),
-      Mode(
+          relevance: 10,
+        ),
+        Mode(
           begin: "(u|b)?r?\"\"\"",
           end: "\"\"\"",
           contains: [BACKSLASH_ESCAPE, Mode(ref: '~contains~0')],
-          relevance: 10),
-      Mode(begin: "(u|r|ur)'", end: "'", relevance: 10),
-      Mode(begin: "(u|r|ur)\"", end: "\"", relevance: 10),
-      Mode(begin: "(b|br)'", end: "'"),
-      Mode(begin: "(b|br)\"", end: "\""),
-      APOS_STRING_MODE,
-      QUOTE_STRING_MODE
-    ]),
-    '~contains~1': Mode(className: "number", relevance: 0, variants: [
-      Mode(begin: "\\b(0b[01]+)[lLjJ]?"),
-      Mode(begin: "\\b(0o[0-7]+)[lLjJ]?"),
-      Mode(
-          begin:
-              "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)[lLjJ]?")
-    ]),
+          relevance: 10,
+        ),
+        Mode(begin: "(u|r|ur)'", end: "'", relevance: 10),
+        Mode(begin: "(u|r|ur)\"", end: "\"", relevance: 10),
+        Mode(begin: "(b|br)'", end: "'"),
+        Mode(begin: "(b|br)\"", end: "\""),
+        APOS_STRING_MODE,
+        QUOTE_STRING_MODE,
+        Mode(
+          begin: "(?<=\\n)=.*(?==\\n)",
+          className: "string",
+        ), // Added highlighting for strings between "\n" and "="
+      ],
+    ),
+    '~contains~1': Mode(
+      className: "number",
+      relevance: 0,
+      variants: [
+        Mode(begin: "\\b(0b[01]+)[lLjJ]?"),
+        Mode(begin: "\\b(0o[0-7]+)[lLjJ]?"),
+        Mode(
+            begin:
+                "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)[lLjJ]?"),
+      ],
+    ),
     '~contains~0': Mode(className: "meta", begin: "^(>>>|\\.\\.\\.) "),
   },
   aliases: ["py", "gyp", "ipython"],
